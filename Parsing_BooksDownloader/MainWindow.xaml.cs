@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Parsing_BooksDownloader
 {
@@ -20,7 +23,6 @@ namespace Parsing_BooksDownloader
     /// </summary>
     public partial class MainWindow : Window
     {
-        //FolderBrowserDialog folder;
         List<Book> books;
 
         public MainWindow()
@@ -38,10 +40,14 @@ namespace Parsing_BooksDownloader
 
             foreach (Book x in books)
             {
-                LB.Items.Add(x.Url);
+                LB.Items.Add(x.Name);
             }
         }
 
-        //https://tululu.org/search/?q=
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+            folderBrowser.ShowDialog();
+        }
     }
 }

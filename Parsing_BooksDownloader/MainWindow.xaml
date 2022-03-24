@@ -24,7 +24,7 @@
                 <ColumnDefinition></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <Button >Путь сохранения</Button>
+            <Button Click="Button_Click_1" >Путь сохранения</Button>
             <Button  Grid.Column="1" >Скачать</Button>
             <Button  Grid.Column="2" >Скачать Все</Button>
         </Grid>

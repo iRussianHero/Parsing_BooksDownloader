@@ -1,6 +1,6 @@
-﻿namespace Parsing_BooksDownloader
+﻿using System;
+
+namespace Parsing_BooksDownloader
 {
-    internal class FolderBrowserDialog
-    {
-    }
+
 }
