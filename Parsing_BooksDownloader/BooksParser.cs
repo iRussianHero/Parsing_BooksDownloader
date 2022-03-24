@@ -23,7 +23,7 @@ namespace Parsing_BooksDownloader
                 if (index >= 0)
                 {
                     var xSite = site.Remove(0, index+8);
-                    var xIndex = site.IndexOf("/")-3;
+                    var xIndex = site.IndexOf(">")-12;
                     url = xSite.Remove(xIndex);
 
                     site = site.Remove(0, index + 16);
