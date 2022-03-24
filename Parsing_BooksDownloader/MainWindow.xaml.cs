@@ -33,6 +33,7 @@ namespace Parsing_BooksDownloader
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             LB.Items.Clear();
+            LB2.Items.Clear();
             SiteToString siteToString = new SiteToString();
             string site = siteToString.GetSite("https://tululu.org/search/?q=" + TB.Text);
             BooksParser parser = new BooksParser();
@@ -41,6 +42,10 @@ namespace Parsing_BooksDownloader
             foreach (Book x in books)
             {
                 LB.Items.Add(x.Name);
+            }
+            foreach (Book x in books)
+            {
+                LB2.Items.Add(x.Url);
             }
         }
 
