@@ -22,16 +22,20 @@ namespace Parsing_BooksDownloader
                 index = site.IndexOf("href");
                 if (index >= 0)
                 {
+                    //  Парсинг URL книги
                     var xSite = site.Remove(0, index+8);
                     var xIndex = site.IndexOf(">")-12;
                     url = xSite.Remove(xIndex);
 
+                    //  Парсинг Name книги
+                    var ySite = site.Remove(0, site.IndexOf(">")+1);
                     site = site.Remove(0, index + 16);
                     index = site.IndexOf("</a");
-                    name = site.Remove(index);
+                    name = ySite.Remove(index);
 
                     books.Add(new Book() { Name = name, Url = url });
 
+                    //  Переход к следующему результату поиска
                     index = site.IndexOf("_blank");
                 }
             }
