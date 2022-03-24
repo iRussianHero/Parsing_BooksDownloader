@@ -20,9 +20,26 @@ namespace Parsing_BooksDownloader
     /// </summary>
     public partial class MainWindow : Window
     {
+        //FolderBrowserDialog folder;
+        List<Book> books;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LB.Items.Clear();
+            SiteToString siteToString = new SiteToString();
+            string site = siteToString.GetSite("https://tululu.org/search/?q=" + TB.Text);
+            BooksParser parser = new BooksParser();
+            books = parser.GetBooks(site);
+
+            foreach (Book x in books)
+            {
+                LB.Items.Add(x.Url);
+            }
         }
 
         //https://tululu.org/search/?q=
