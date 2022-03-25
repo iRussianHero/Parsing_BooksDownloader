@@ -33,7 +33,7 @@ namespace Parsing_BooksDownloader
                     index = site.IndexOf("</a");
                     name = ySite.Remove(index);
 
-                    books.Add(new Book() { Name = name, Url = url });
+                    books.Add(new Book() { Name = name, Url = "https://tululu.org/txt.php?id=" + url });
 
                     //  Переход к следующему результату поиска
                     index = site.IndexOf("_blank");

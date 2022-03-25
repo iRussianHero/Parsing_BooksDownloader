@@ -53,9 +53,10 @@ namespace Parsing_BooksDownloader
 
                 LB1.Content = books[i].Name;
 
-                await Task.Run(()=> client.DownloadFile(new Uri(books[i].Url), path));
+                await Task.Run(()=> client.DownloadFile(new Uri(books[i].Url), path + $"{ books[i].Name }" + ".txt"));
                 await Task.Run(() => Dispatcher.Invoke(new Action(() => { PB.Value += 1; })));
             }
+            LB1.Content = "Готово";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -76,11 +77,30 @@ namespace Parsing_BooksDownloader
                 LB2.Items.Add(x.Url);
             }
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             folderBrowser.ShowDialog();
+        }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (LB.SelectedIndex < 0)
+                return;
+
+            if(folder.SelectedPath.Length == 0 || folder.SelectedPath == null)
+            {
+                if (folder.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                    return;
+            }
+
+            WebClient client = new WebClient();
+            string path = folder.SelectedPath + "\\" + books[LB.SelectedIndex].Url + ".txt";
+
+            client.DownloadFileAsync(new Uri(books[LB.SelectedIndex].Url), path);
+        }
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            DownloadAll();
         }
     }
 }

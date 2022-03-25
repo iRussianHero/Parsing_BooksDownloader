@@ -58,7 +58,6 @@
     </ApplicationDefinition>
     <Compile Include="Book.cs" />
     <Compile Include="BooksParser.cs" />
-    <Compile Include="FolderBrowserDialog.cs" />
     <Compile Include="SiteToString.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
