@@ -23,11 +23,39 @@ namespace Parsing_BooksDownloader
     /// </summary>
     public partial class MainWindow : Window
     {
+        FolderBrowserDialog folder;
         List<Book> books;
 
         public MainWindow()
         {
             InitializeComponent();
+            folder = new FolderBrowserDialog();
+        }
+
+        async void DownloadAll()
+        {
+            WebClient client = new WebClient();
+
+            if( folder.SelectedPath.Length == 0 || folder.SelectedPath == null)
+            {
+                if(folder.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                {
+                    return;
+                }
+            }
+
+            PB.Value = 0;
+            PB.Maximum = books.Count;
+
+            for (int i = 0; i < books.Count; i++)
+            {
+                string path = folder.SelectedPath + "\\";
+
+                LB1.Content = books[i].Name;
+
+                await Task.Run(()=> client.DownloadFile(new Uri(books[i].Url), path));
+                await Task.Run(() => Dispatcher.Invoke(new Action(() => { PB.Value += 1; })));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
