@@ -87,16 +87,22 @@ namespace Parsing_BooksDownloader
             if (LB.SelectedIndex < 0)
                 return;
 
-            if(folder.SelectedPath.Length == 0 || folder.SelectedPath == null)
+            PB.Value = 0;
+            PB.Maximum = 1;
+
+            if (folder.SelectedPath.Length == 0 || folder.SelectedPath == null)
             {
                 if (folder.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                     return;
             }
 
             WebClient client = new WebClient();
-            string path = folder.SelectedPath + "\\" + books[LB.SelectedIndex].Url + ".txt";
+            string path = folder.SelectedPath + "\\" + books[LB.SelectedIndex].Name + ".txt";
 
             client.DownloadFileAsync(new Uri(books[LB.SelectedIndex].Url), path);
+
+            PB.Value += 1;
+            LB1.Content = "Готово";
         }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
